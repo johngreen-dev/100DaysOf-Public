@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!(topicName.length>0)" (click)="confirm()">Confirm</ion-button>
+    </ion-buttons>  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      Track a new #100DaysOf item
+    </ion-item>
+    <ion-item>
+      <ion-label>#100DaysOf</ion-label>
+      <ion-input
+      [autofocus]="true"
+      type="text"
+      placeholder="...Add New Topic..."
+      [(ngModel)]="topicName"
+      text-right
+      (ionChange)="textChanged()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Starting Day</ion-label>
+      <ion-input
+      type="number"
+      value="1"
+      [(ngModel)]="topicStartDay"
+      text-right></ion-input>
+    </ion-item>
+
+
+  </ion-list>
+
+</ion-content>

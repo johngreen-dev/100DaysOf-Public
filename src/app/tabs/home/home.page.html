@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>#100DaysOf{{selectedTopic?.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-select
+      *ngIf="selectedTopic !== undefined"
+      placeholder="Select topic"
+      [value]="selectedTopic.name"
+      (ionChange)="selectChange($event)"	>
+        <ion-select-option *ngFor="let topic of topics" [value]="topic.name">{{topic.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-button expand="block" (click)="addNewTopic()">New Topic</ion-button>
+  <ion-button *ngIf="selectedTopic !== undefined" expand="block" (click)="removeTopic()">Remove Topic</ion-button>
+  <ion-button *ngIf="selectedTopic !== undefined && selectedTopic.progress > 0" expand="block" (click)="restartTopic()">Restart Topic</ion-button>
+
+  <ion-card *ngIf="selectedTopic !== undefined">
+    <ion-card-header>
+      <ion-card-title>Current Progress</ion-card-title>
+      <ion-card-subtitle>#100DaysOf{{selectedTopic.name}}</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{selectedTopic.progress}} Days completed so far
+      <ion-progress-bar [value]="selectedTopic.progress/100"></ion-progress-bar>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="selectedTopic !== undefined && selectedTopic.progress < 100">
+    <ion-card-header>
+      <ion-card-title>Update Progress</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        {{tweetText}}
+      </ion-item>
+      <ion-item>
+        <ion-textarea
+        [maxlength]="getMaxLength()"
+        inputmode="text"
+        rows="4"
+        [value]="tweetTextArea"
+        auto-grow="true"
+        (ionChange)="tweetTextChange($event)">
+        </ion-textarea>
+      </ion-item>
+
+    </ion-card-content>
+      <ion-button [disabled]="tweetTextArea.length <= 0 " expand="block" (click)="updateProgress()">Send Update</ion-button>
+  </ion-card>
+
+  <ion-card *ngIf="selectedTopic !== undefined && selectedTopic.progress >= 100">
+    <ion-card-header>
+      <ion-card-title>Congratulations!</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Well done for completing #100DaysOf{{selectedTopic.name}}
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>

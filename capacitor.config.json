@@ -1,0 +1,6 @@
+{
+	"appId": "io.hundred.days.of",
+	"appName": "100DaysOf",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

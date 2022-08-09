@@ -1,0 +1,8 @@
+{
+  "name": "100DaysOf",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
